@@ -1,0 +1,50 @@
+{
+    "name": "blackforest/piwik-bundle",
+    "description": "Contao piwik bundle",
+    "keywords": [
+        "contao",
+        "bundle"
+    ],
+    "type": "bundle",
+    "homepage": "https://github.com/BlackForest",
+    "license": "LGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Sven Baumann",
+            "email": "baumann.sv@gmail.com",
+            "homepage": "https://github.com/baumannsven",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "baumann.sv@gmail.com",
+        "issues": "https://github.com/BlackForest/piwik-bundle/issues",
+        "wiki": "https://github.com/BlackForest/piwik-bundle/wiki",
+        "irc": "irc://irc.freenode.org/contao.mm",
+        "source": "https://github.com/BlackForest/piwik-bundle"
+    },
+    "require": {
+        "php": "^5.6 || ^7.0",
+        "symfony/dependency-injection": "^3.3",
+        "symfony/http-kernel": "^3.3"
+    },
+    "require-dev": {
+        "phpcq/all-tasks": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "BlackForest\\PiwikBundle\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BlackForest\\PiwikBundle\\Test\\": "tests/Test"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev",
+            "dev-develop": "1.1.x-dev"
+        }
+    }
+}
