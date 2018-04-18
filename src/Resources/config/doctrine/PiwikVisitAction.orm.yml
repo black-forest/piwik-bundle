@@ -1,0 +1,67 @@
+BlackForest\PiwikBundle\Entity\PiwikVisitAction:
+    type: entity
+    repositoryClass: BlackForest\PiwikBundle\Entity\PiwikVisitActionRepository
+    table: piwik_visit_action
+
+    id:
+        uuid:
+            type: uuid
+            generator:
+                strategy: CUSTOM
+            customIdGenerator:
+                class: Ramsey\Uuid\Doctrine\UuidOrderedTimeGenerator
+
+    fields:
+        created:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: create
+        updated:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: update
+        time:
+            type: datetime
+            nullable: false
+        pageId:
+            type: integer
+            nullable: false
+        idpageview:
+            type: string
+            length: 6
+            nullable: false
+        generationTime:
+            type: decimal
+            nullable: false
+        interactionPosition:
+            type: integer
+            nullable: false
+        icon:
+            type: text
+            nullable: true
+
+    manyToOne:
+        site:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikSite
+            inversedBy: visitAction
+            joinColumn:
+                referencedColumnName: uuid
+        visit:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikVisit
+            inversedBy: visitAction
+            joinColumn:
+                referencedColumnName: uuid
+        type:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikActionType
+            inversedBy: visitAction
+            joinColumn:
+                referencedColumnName: uuid
+        action:
+             targetEntity: BlackForest\PiwikBundle\Entity\PiwikAction
+             inversedBy: visitAction
+             joinColumn:
+                 referencedColumnName: uuid

@@ -1,0 +1,44 @@
+BlackForest\PiwikBundle\Entity\PiwikReferrerType:
+    type: entity
+    repositoryClass: BlackForest\PiwikBundle\Entity\PiwikReferrerTypeRepository
+    table: piwik_referrer_type
+
+    id:
+        uuid:
+            type: string
+            length: 32
+            generator:
+                strategy: NONE
+
+    fields:
+        created:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: create
+        updated:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: update
+        name:
+            type: string
+            length: 24
+            nullable: false
+        type:
+            type: text
+            nullable: true
+
+    oneToMany:
+        visit:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikVisit
+            mappedBy: referrerType
+
+    manyToOne:
+        site:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikSite
+            inversedBy: referrerType
+            joinColumn:
+                referencedColumnName: uuid

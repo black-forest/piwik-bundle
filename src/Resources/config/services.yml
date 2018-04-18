@@ -1,1 +1,14 @@
 services:
+    bf.piwik.connection:
+        class: BlackForest\PiwikBundle\Connection\Connection
+        public: true
+        arguments:
+            - "@=container.hasParameter('piwik_api_token') ? parameter('piwik_api_token') : 'anonymous'"
+            - "@=container.hasParameter('piwik_api_url') ? parameter('piwik_api_url') : null"
+            - "@=container.hasParameter('piwik_statistic_domain') ? parameter('piwik_statistic_domain') : []"
+    bf.piwik.controller.communicator:
+        class: BlackForest\PiwikBundle\Controller\Communicator
+        public: true
+        arguments:
+            - "@bf.piwik.connection"
+            - "@doctrine"

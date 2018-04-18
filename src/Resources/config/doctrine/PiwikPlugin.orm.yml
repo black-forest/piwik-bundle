@@ -1,0 +1,45 @@
+BlackForest\PiwikBundle\Entity\PiwikPlugin:
+    type: entity
+    repositoryClass: BlackForest\PiwikBundle\Entity\PiwikPluginRepository
+    table: piwik_plugin
+
+    id:
+        uuid:
+            type: string
+            length: 32
+            generator:
+                strategy: NONE
+
+    fields:
+        created:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: create
+        updated:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: update
+        name:
+            type: string
+            length: 24
+            nullable: false
+        icon:
+            type: text
+            nullable: true
+
+    manyToOne:
+        site:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikSite
+            inversedBy: plugin
+            joinColumn:
+                referencedColumnName: uuid
+        visitPlugin:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikVisitPlugin
+            inversedBy: plugin
+            joinColumn:
+                referencedColumnName: uuid
+

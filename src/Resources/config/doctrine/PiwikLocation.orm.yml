@@ -1,0 +1,59 @@
+BlackForest\PiwikBundle\Entity\PiwikLocation:
+    type: entity
+    repositoryClass: BlackForest\PiwikBundle\Entity\PiwikLocationRepository
+    table: piwik_location
+
+    id:
+        uuid:
+            type: string
+            length: 32
+            generator:
+                strategy: NONE
+
+    fields:
+        created:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: create
+        updated:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: update
+        name:
+            type: string
+            length: 128
+            nullable: false
+        code:
+            type: string
+            length: 128
+            nullable: false
+        city:
+            type: text
+            nullable: false
+        latitude:
+            type: text
+            nullable: true
+        longitude:
+            type: text
+            nullable: true
+
+    oneToMany:
+        visit:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikVisit
+            mappedBy: location
+
+    manyToOne:
+        country:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikCountry
+            inversedBy: location
+            joinColumn:
+                referencedColumnName: uuid
+        site:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikSite
+            inversedBy: location
+            joinColumn:
+                referencedColumnName: uuid

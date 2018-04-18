@@ -1,0 +1,38 @@
+BlackForest\PiwikBundle\Entity\PiwikVisitor:
+    type: entity
+    repositoryClass: BlackForest\PiwikBundle\Entity\PiwikVisitorsRepository
+    table: piwik_visitor
+
+    id:
+        uuid:
+            type: string
+            length: 18
+            generator:
+                strategy: NONE
+            customIdGenerator:
+
+    fields:
+        created:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: create
+        updated:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: update
+
+    oneToMany:
+        visit:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikVisit
+            mappedBy: visitor
+
+    manyToOne:
+        site:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikSite
+            inversedBy: visitor
+            joinColumn:
+                referencedColumnName: uuid

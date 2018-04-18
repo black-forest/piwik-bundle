@@ -1,0 +1,43 @@
+BlackForest\PiwikBundle\Entity\PiwikSearchEngine:
+    type: entity
+    repositoryClass: BlackForest\PiwikBundle\Entity\PiwikSearchEngineRepository
+    table: piwik_search_engine
+
+    id:
+        uuid:
+            type: string
+            length: 32
+            generator:
+                strategy: NONE
+
+    fields:
+        created:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: create
+        updated:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: update
+        url:
+            type: text
+            nullable: false
+        icon:
+            type: text
+            nullable: true
+
+    oneToMany:
+        visit:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikVisit
+            mappedBy: searchEngine
+
+    manyToOne:
+        site:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikSite
+            inversedBy: searchEngine
+            joinColumn:
+                referencedColumnName: uuid

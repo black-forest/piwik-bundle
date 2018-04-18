@@ -1,0 +1,52 @@
+BlackForest\PiwikBundle\Entity\PiwikDevice:
+    type: entity
+    repositoryClass: BlackForest\PiwikBundle\Entity\PiwikDeviceRepository
+    table: piwik_device
+
+    id:
+        uuid:
+            type: string
+            length: 32
+            generator:
+                strategy: NONE
+
+    fields:
+        created:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: create
+        updated:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: update
+        name:
+            type: string
+            length: 128
+            nullable: false
+        model:
+            type: string
+            length: 128
+            nullable: true
+        brand:
+            type: string
+            length: 128
+            nullable: false
+        icon:
+            type: text
+            nullable: true
+
+    oneToMany:
+        visit:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikVisit
+            mappedBy: device
+
+    manyToOne:
+        site:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikSite
+            inversedBy: device
+            joinColumn:
+                referencedColumnName: uuid

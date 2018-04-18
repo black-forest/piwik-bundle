@@ -1,0 +1,42 @@
+BlackForest\PiwikBundle\Entity\PiwikActionType:
+    type: entity
+    repositoryClass: BlackForest\PiwikBundle\Entity\PiwikActionTypeRepository
+    table: piwik_action_type
+
+    id:
+        uuid:
+            type: string
+            length: 32
+            generator:
+                strategy: NONE
+
+    fields:
+        created:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: create
+        updated:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: update
+        name:
+            type: string
+            length: 24
+            nullable: false
+
+    oneToMany:
+        visitAction:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikVisitAction
+            mappedBy: type
+
+    manyToOne:
+        site:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikSite
+            inversedBy: actionType
+            joinColumn:
+                referencedColumnName: uuid
+

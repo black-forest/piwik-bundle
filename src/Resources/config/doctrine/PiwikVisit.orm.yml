@@ -1,0 +1,168 @@
+BlackForest\PiwikBundle\Entity\PiwikVisit:
+    type: entity
+    repositoryClass: BlackForest\PiwikBundle\Entity\PiwikVisitRepository
+    table: piwik_visit
+
+    id:
+        uuid:
+            type: uuid
+            generator:
+                strategy: CUSTOM
+            customIdGenerator:
+                class: Ramsey\Uuid\Doctrine\UuidOrderedTimeGenerator
+
+    fields:
+        created:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: create
+        updated:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: update
+        idVisit:
+            type: bigint
+            nullable: false
+        goalConversions:
+            type: integer
+            nullable: true
+        userId:
+            type: integer
+            nullable: true
+        visitConverted:
+            type: integer
+            nullable: true
+        visitConvertedIcon:
+            type: text
+            nullable: true
+        daysSinceLastEcommerceOrder:
+            type: integer
+            nullable: true
+        searches:
+            type: smallint
+            nullable: true
+        referrerName:
+            type: string
+            length: 128
+            nullable: true
+        referrerKeyword:
+            type: string
+            length: 255
+            nullable: true
+        referrerKeywordPosition:
+            type: integer
+            nullable: true
+        referrerUrl:
+            type: text
+            nullable: true
+        totalEcommerceRevenue:
+            type: decimal
+            nullable: true
+        totalEcommerceConversions:
+            type: integer
+            nullable: true
+        totalEcommerceItems:
+            type: string
+            length: 64
+            nullable: true
+        totalAbandonedCartsRevenue:
+            type: decimal
+            nullable: true
+        totalAbandonedCarts:
+            type: integer
+            nullable: true
+        totalAbandonedCartsItems:
+            type: string
+            length: 64
+            nullable: true
+        events:
+            type: integer
+            nullable: true
+
+    oneToMany:
+        visitAction:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikVisitAction
+            mappedBy: visit
+
+    manyToOne:
+        site:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikSite
+            inversedBy: visit
+            joinColumn:
+                referencedColumnName: uuid
+        currency:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikCurrency
+            inversedBy: visit
+            joinColumn:
+                referencedColumnName: uuid
+        visitor:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikVisitor
+            inversedBy: visit
+            joinColumn:
+                referencedColumnName: uuid
+        visitorType:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikVisitorType
+            inversedBy: visit
+            joinColumn:
+                referencedColumnName: uuid
+        ecommmerceStatus:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikEcomerceStatus
+            inversedBy: visit
+            joinColumn:
+                referencedColumnName: uuid
+        referrerType:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikReferrerType
+            inversedBy: visit
+            joinColumn:
+                referencedColumnName: uuid
+        searchEngine:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikSearchEngine
+            inversedBy: visit
+            joinColumn:
+                referencedColumnName: uuid
+        language:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikLanguage
+            inversedBy: visit
+            joinColumn:
+                referencedColumnName: uuid
+        device:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikDevice
+            inversedBy: visit
+            joinColumn:
+                referencedColumnName: uuid
+        operatingSystem:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikOperatingSystem
+            inversedBy: visit
+            joinColumn:
+                referencedColumnName: uuid
+        browser:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikBrowser
+            inversedBy: visit
+            joinColumn:
+                referencedColumnName: uuid
+        country:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikCountry
+            inversedBy: visit
+            joinColumn:
+                referencedColumnName: uuid
+        location:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikLocation
+            inversedBy: visit
+            joinColumn:
+                referencedColumnName: uuid
+        resolution:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikResolution
+            inversedBy: visit
+            joinColumn:
+                referencedColumnName: uuid
+        plugin:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikVisitPlugin
+            inversedBy: visit
+            joinColumn:
+                referencedColumnName: uuid
+
+

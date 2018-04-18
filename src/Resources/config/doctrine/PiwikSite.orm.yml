@@ -1,0 +1,170 @@
+BlackForest\PiwikBundle\Entity\PiwikSite:
+    type: entity
+    repositoryClass: BlackForest\PiwikBundle\Entity\PiwikSiteRepository
+    table: piwik_site
+
+    id:
+        uuid:
+            type: uuid
+            generator:
+                strategy: CUSTOM
+            customIdGenerator:
+                class: Ramsey\Uuid\Doctrine\UuidOrderedTimeGenerator
+
+    fields:
+        created:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: create
+        updated:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: update
+        idsite:
+            type: integer
+            nullable: false
+        name:
+            type: string
+            length: 90
+            nullable: false
+            options:
+                default: ""
+        mainUrl:
+            type: string
+            length: 255
+            nullable: false
+        tsCreated:
+            type: datetime
+            nullable: true
+        ecommerce:
+            type: integer
+            nullable: false
+            options:
+                default: 0
+        sitesearch:
+            type: integer
+            nullable: false
+            options:
+                default: 0
+        sitesearchKeywordParameters:
+            type: text
+            nullable: false
+            options:
+                default: ""
+        sitesearchCategoryParameters:
+            type: text
+            nullable: false
+            options:
+                default: ""
+        timezone:
+            type: string
+            length: 50
+            nullable: false
+            options:
+                default: ""
+        currency:
+            type: string
+            length: 3
+            nullable: false
+            options:
+                default: ""
+        excludeUnknownUrls:
+            type: boolean
+            nullable: false
+            options:
+                default: 0
+        excludedIps:
+            type: text
+            nullable: false
+            options:
+                default: ""
+        excludedParameters:
+            type: text
+            nullable: false
+            options:
+                default: ""
+        excludedUserAgents:
+            type: text
+            nullable: false
+            options:
+                default: ""
+        groups:
+            type: string
+            length: 250
+            nullable: false
+            options:
+                default: ""
+        type:
+            type: string
+            length: 255
+            nullable: false
+            options:
+                default: ""
+        keepUrlFragment:
+            type: integer
+            nullable: false
+            options:
+                default: 0
+
+    oneToMany:
+        visit:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikVisit
+            mappedBy: site
+        visitor:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikVisitor
+            mappedBy: site
+        visitorType:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikVisitorType
+            mappedBy: site
+        referrerType:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikReferrerType
+            mappedBy: site
+        searchEngine:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikSearchEngine
+            mappedBy: site
+        language:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikLanguage
+            mappedBy: site
+        device:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikDevice
+            mappedBy: site
+        operatingSystem:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikOperatingSystem
+            mappedBy: site
+        browser:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikBrowser
+            mappedBy: site
+        country:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikCountry
+            mappedBy: site
+        location:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikLocation
+            mappedBy: site
+        resolution:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikResolution
+            mappedBy: site
+        ecomerceStatus:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikEcomerceStatus
+            mappedBy: site
+        visitPlugin:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikVisitPlugin
+            mappedBy: site
+        currencies:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikCurrency
+            mappedBy: site
+        visitAction:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikVisitAction
+            mappedBy: site
+        action:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikAction
+            mappedBy: site
+        actionType:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikActionType
+            mappedBy: site
+        plugin:
+            targetEntity: BlackForest\PiwikBundle\Entity\PiwikPlugin
+            mappedBy: site
